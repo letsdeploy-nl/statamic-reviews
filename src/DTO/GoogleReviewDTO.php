@@ -38,7 +38,7 @@ class GoogleReviewDTO implements Reviewable
             reviewOrigin: $data['reviewOrigin'],
             reviewId: $data['reviewId'],
             reviewUrl: $data['reviewUrl'],
-            reviewImageUrls: collect($data['reviewImageUrls'])->map(fn($url) => ["review_image_url" => $url]),
+            reviewImageUrls: collect($data['reviewImageUrls'])->map(fn(string $url) => ["review_image_url" => $url]),
             rawJson: json_encode($data)
         );
     }
