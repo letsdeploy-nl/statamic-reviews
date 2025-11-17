@@ -9,7 +9,7 @@ class ConfigService
 {
     public function getGooglePlaceIds(): Collection
     {
-        $rawPlaceIds = config('services.google_reviews.place_ids');
+        $rawPlaceIds = config('reviews.google.place_ids');
 
         if (!$rawPlaceIds) throw new \Exception('No Google Places IDs found in .env');
 
