@@ -1,4 +1,4 @@
-<article x-data="{ expanded: false }" class="p-3 rounded-2xl border border-neutral-200 space-y-2">
+<article x-data="{ expanded: false, isClamped: false }" x-init="$nextTick(() => { const el = $refs.content; isClamped = el.scrollHeight > el.clientHeight; })" class="p-3 rounded-2xl border border-neutral-200 space-y-2">
     <div class="flex gap-3 items-center">
         {{ glide :src="reviewer_photo_url" width="60" height="60" format="avif" }}
             <img src="{{ url }}" alt="{{ alt }}" draggable="false" loading="lazy" width="{{ width }}"
@@ -26,7 +26,7 @@
         </svg>
     </div>
     <div class="flex gap-3">
-        <div class="w-full" :class="!expanded && 'line-clamp-5'">{{ content }}</div>
+        <div x-ref="content" class="w-full" :class="!expanded && 'line-clamp-5'">{{ content }}</div>
         {{ if review_image_urls }}
             <div class="w-50 h-30 rounded-2xl relative overflow-hidden">
                 {{ review_image_urls limit="1" }}
@@ -38,6 +38,7 @@
         {{ /if }}
     </div>
     <button
+        x-show="isClamped"
         @click="expanded = !expanded"
         class="text-neutral-500 hover:underline cursor-pointer"
         x-text="expanded ? 'Lees minder' : 'Lees verder'"
