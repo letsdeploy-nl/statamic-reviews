@@ -11,7 +11,7 @@ interface Reviewable
         get;
     }
 
-    public string $content {
+    public ?string $content {
         get;
         set;
     }

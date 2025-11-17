@@ -13,7 +13,7 @@ class GoogleReviewDTO implements Reviewable
     }
 
     public function __construct(
-        public string $content,
+        public ?string $content,
         public int    $stars,
         public string $name,
         public string $reviewerPhotoUrl,
@@ -38,8 +38,7 @@ class GoogleReviewDTO implements Reviewable
             reviewOrigin: $data['reviewOrigin'],
             reviewId: $data['reviewId'],
             reviewUrl: $data['reviewUrl'],
-            //reviewImageUrls: $data['reviewImageUrls'],
-            reviewImageUrls: collect([["review_image_url" => "https://pretty-awesome.com"]]),
+            reviewImageUrls: collect($data['reviewImageUrls'])->map(fn($url) => ["review_image_url" => $url]),
             rawJson: json_encode($data)
         );
     }
