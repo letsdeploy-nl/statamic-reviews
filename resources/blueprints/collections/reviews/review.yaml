@@ -1,0 +1,97 @@
+title: Review
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              required: true
+              validate:
+                - required
+              visibility: read_only
+          -
+            handle: content
+            field:
+              type: markdown
+              display: Content
+              visibility: read_only
+          -
+            handle: stars
+            field:
+              type: integer
+              display: Stars
+              validate:
+                - 'between:1,5'
+              visibility: read_only
+          -
+            handle: review_image_urls
+            field:
+              type: grid
+              display: 'Review Image URLs'
+              visibility: read_only
+              fields:
+                -
+                  handle: review_image_url
+                  field:
+                    type: text
+                    display: 'Review Image URL'
+      -
+        display: Reviewer
+        fields:
+          -
+            handle: name
+            field:
+              type: text
+              display: Name
+              visibility: read_only
+          -
+            handle: reviewer_photo_url
+            field:
+              type: text
+              display: 'Reviewer photo url'
+              visibility: read_only
+      -
+        display: Origin
+        fields:
+          -
+            handle: review_url
+            field:
+              type: text
+              display: 'Review URL'
+              visibility: read_only
+          -
+            handle: review_id
+            field:
+              type: text
+              display: 'Review ID'
+              visibility: read_only
+          -
+            handle: review_origin
+            field:
+              type: text
+              display: 'Review origin'
+              visibility: read_only
+      -
+        display: Meta
+        fields:
+          -
+            handle: raw_json
+            field:
+              type: code
+              display: 'Raw JSON'
+              visibility: read_only
+              mode: javascript
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        fields:
+          -
+            handle: created_at
+            field:
+              type: date
+              display: 'Created at'

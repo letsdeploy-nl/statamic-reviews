@@ -1,0 +1,45 @@
+<article x-data="{ expanded: false }" class="p-3 rounded-2xl border border-neutral-200 space-y-2">
+    <div class="flex gap-3 items-center">
+        {{ glide :src="reviewer_photo_url" width="60" height="60" format="avif" }}
+            <img src="{{ url }}" alt="{{ alt }}" draggable="false" loading="lazy" width="{{ width }}"
+                 height="{{ height }}" class="rounded-full w-10 h-10">
+        {{ /glide }}
+        <div>
+            <p class="font-medium">{{ name }}</p>
+            <p>{{ created_at format="d-m-Y" }}</p>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 ml-auto fill-neutral-400" viewBox="0 0 640 640">
+            <path
+                d="M564 325.8C564 467.3 467.1 568 324 568C186.8 568 76 457.2 76 320C76 182.8 186.8 72 324 72C390.8 72 447 96.5 490.3 136.9L422.8 201.8C334.5 116.6 170.3 180.6 170.3 320C170.3 406.5 239.4 476.6 324 476.6C422.2 476.6 459 406.2 464.8 369.7L324 369.7L324 284.4L560.1 284.4C562.4 297.1 564 309.3 564 325.8z"/>
+        </svg>
+    </div>
+    <div class="flex">
+        {{ loop from="1" :to="stars" }}
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-yellow-400" viewBox="0 0 640 640">
+                <path
+                    d="M341.5 45.1C337.4 37.1 329.1 32 320.1 32C311.1 32 302.8 37.1 298.7 45.1L225.1 189.3L65.2 214.7C56.3 216.1 48.9 222.4 46.1 231C43.3 239.6 45.6 249 51.9 255.4L166.3 369.9L141.1 529.8C139.7 538.7 143.4 547.7 150.7 553C158 558.3 167.6 559.1 175.7 555L320.1 481.6L464.4 555C472.4 559.1 482.1 558.3 489.4 553C496.7 547.7 500.4 538.8 499 529.8L473.7 369.9L588.1 255.4C594.5 249 596.7 239.6 593.9 231C591.1 222.4 583.8 216.1 574.8 214.7L415 189.3L341.5 45.1z"/>
+            </svg>
+        {{ /loop }}
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-primary ml-1" viewBox="0 0 640 640">
+            <path
+                d="M320 64C356.8 64 388.8 84.7 404.9 115.1C437.8 105 475 112.9 501 139C527 165.1 535 202.3 524.9 235.2C555.3 251.2 576 283.2 576 320C576 356.8 555.3 388.8 524.9 404.9C535 437.8 527 475 501 501C475 527 437.7 535 404.8 524.9C388.8 555.3 356.8 576 320 576C283.2 576 251.2 555.3 235.1 524.9C202.2 535 165 527 139 501C113 475 105 437.7 115.1 404.8C84.7 388.8 64 356.8 64 320C64 283.2 84.7 251.2 115.1 235.1C105 202.2 112.9 165 139 139C165.1 113 202.3 105 235.2 115.1C251.2 84.7 283.2 64 320 64zM410.9 228.6C400.2 220.8 385.2 223.2 377.4 233.9L291.8 351.6L265.3 324.2C256.1 314.7 240.9 314.4 231.4 323.6C221.9 332.8 221.6 348 230.8 357.5L277.2 405.5C282.1 410.6 289 413.3 296.1 412.8C303.2 412.3 309.7 408.7 313.9 403L416.2 262.1C424 251.4 421.6 236.4 410.9 228.6z"/>
+        </svg>
+    </div>
+    <div class="flex gap-3">
+        <div class="w-full" :class="!expanded && 'line-clamp-5'">{{ content }}</div>
+        {{ if review_image_urls }}
+            <div class="w-50 h-30 rounded-2xl relative overflow-hidden">
+                {{ review_image_urls limit="1" }}
+                {{ glide :src="review_image_url" format="avif" }}
+                    <img src="{{ url }}" loading="lazy" class="object-cover w-full h-full" alt="">
+                {{ /glide }}
+            </div>
+            {{ /review_image_urls }}
+        {{ /if }}
+    </div>
+    <button
+        @click="expanded = !expanded"
+        class="text-neutral-500 hover:underline cursor-pointer"
+        x-text="expanded ? 'Lees minder' : 'Lees verder'"
+    ></button>
+</article>
