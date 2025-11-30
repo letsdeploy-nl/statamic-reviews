@@ -1,4 +1,4 @@
-<article x-data="{ expanded: false, isClamped: false }" x-init="$nextTick(() => { const el = $refs.content; isClamped = el.scrollHeight > el.clientHeight; })" class="p-3 rounded-2xl border border-neutral-200 space-y-2">
+<article x-data="review" class="p-3 rounded-2xl border border-neutral-200 space-y-2">
     <div class="flex gap-3 items-center">
         {{ glide :src="reviewer_photo_url" width="60" height="60" format="avif" }}
             <img src="{{ url }}" alt="{{ alt }}" draggable="false" loading="lazy" width="{{ width }}"
