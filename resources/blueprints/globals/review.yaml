@@ -5,7 +5,7 @@ tabs:
       -
         fields:
           -
-            handle: total_sscore
+            handle: total_score
             field:
               type: integer
               display: 'Total score'
