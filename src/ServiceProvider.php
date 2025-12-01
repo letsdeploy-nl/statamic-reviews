@@ -18,6 +18,7 @@ class ServiceProvider extends AddonServiceProvider
         $this->publishes([
             __DIR__ . '/../resources/views/components/_review.antlers.html' => resource_path('views/partials/components/_review.antlers.html'),
             __DIR__ . '/../resources/views/components/_review_masonry.antlers.html' => resource_path('views/partials/components/_review_masonry.antlers.html'),
+            __DIR__ . '/../resources/views/components/_review_summary.antlers.html' => resource_path('views/partials/components/_review_summary.antlers.html'),
         ], 'ldp-reviews-views');
 
         $this->publishes([
