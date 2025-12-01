@@ -47,7 +47,7 @@ class ReviewRepository
         $set = GlobalSet::findByHandle('review');
         $variables = $set->inDefaultSite();
         $variables->data([
-            'total_score' => $review->totalScore,
+            'total_score' => round($review->totalScore),
             'reviews_count' => $review->reviewsCount
         ]);
         $variables->save();
