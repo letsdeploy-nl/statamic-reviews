@@ -21,7 +21,9 @@ class ApifyService
 
         $this->client = Http::withHeaders([
             'Authorization' => "Bearer $apifyToken"
-        ])->baseUrl("https://api.apify.com/v2/acts");
+        ])
+            ->timeout(300)
+            ->baseUrl("https://api.apify.com/v2/acts");
     }
 
     public function getGoogleReviews(
