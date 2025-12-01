@@ -1,31 +1,36 @@
-<div class="max-w-1200 mx-auto 1200:grid-cols-3 grid gap-6">
-    {{ collection:reviews as="reviews" limit="36" sort="created_at:desc" content:is_empty="false" }}
-        <div class="space-y-6">
-            {{ reviews }}
-            {{ if index % 3 == 0 }}
-                <div x-show="isVisible({{ index }})">
-                    {{ partial:components/review }}
-                </div>
-            {{ /if }}
-            {{ /reviews }}
-        </div>
-        <div class="space-y-6">
-            {{ reviews }}
-            {{ if index % 3 == 1 }}
-                <div x-show="isVisible({{ index }})">
-                    {{ partial:components/review }}
-                </div>
-            {{ /if }}
-            {{ /reviews }}
-        </div>
-        <div class="space-y-6">
-            {{ reviews }}
-            {{ if index % 3 == 2 }}
-                <div x-show="isVisible({{ index }})">
-                    {{ partial:components/review }}
-                </div>
-            {{ /if }}
-            {{ /reviews }}
-        </div>
-    {{ /collection:reviews }}
+<div x-data="reviews">
+    <div class="max-w-container mx-auto 1200:grid-cols-3 grid gap-6">
+        {{ collection:reviews as="reviews" limit="36" sort="created_at:desc" content:is_empty="false" }}
+            <div class="space-y-6">
+                {{ reviews }}
+                {{ if index % 3 == 0 }}
+                    <div x-show="isVisible({{ index }})">
+                        {{ partial:components/review }}
+                    </div>
+                {{ /if }}
+                {{ /reviews }}
+            </div>
+            <div class="space-y-6">
+                {{ reviews }}
+                {{ if index % 3 == 1 }}
+                    <div x-show="isVisible({{ index }})">
+                        {{ partial:components/review }}
+                    </div>
+                {{ /if }}
+                {{ /reviews }}
+            </div>
+            <div class="space-y-6">
+                {{ reviews }}
+                {{ if index % 3 == 2 }}
+                    <div x-show="isVisible({{ index }})">
+                        {{ partial:components/review }}
+                    </div>
+                {{ /if }}
+                {{ /reviews }}
+            </div>
+        {{ /collection:reviews }}
+    </div>
+    <div class="flex justify-center">
+        {{ partial:components/button variant="primary" label="Meer reviews" props="@click='handleMore' x-show='hasMore'" }}
+    </div>
 </div>

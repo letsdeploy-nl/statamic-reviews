@@ -5,6 +5,7 @@ namespace Letsdeploy\Reviews\Repositories;
 use Illuminate\Support\Carbon;
 use Letsdeploy\Reviews\Interfaces\Reviewable;
 use Statamic\Facades\Entry;
+use Statamic\Facades\GlobalSet;
 
 class ReviewRepository
 {
@@ -39,5 +40,16 @@ class ReviewRepository
                 'raw_json' => $review->rawJson,
             ])
             ->save();
+    }
+
+    public function updateGlobal(Reviewable $review)
+    {
+        $set = GlobalSet::findByHandle('review');
+        $variables = $set->inDefaultSite();
+        $variables->data([
+            'total_score' => $review->totalScore,
+            'reviews_count' => $review->reviewsCount
+        ]);
+        $variables->save();
     }
 }

@@ -26,5 +26,9 @@ class ReviewsUpdate extends Command
         );
 
         $reviews->each(fn (GoogleReviewDTO $review) => $reviewRepository->updateOrCreate($review));
+
+        $reviewRepository->updateGlobal(
+            review: $reviews->first()
+        );
     }
 }

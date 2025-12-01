@@ -7,6 +7,7 @@ use Letsdeploy\Reviews\DTO\GoogleReviewDTO;
 use Letsdeploy\Reviews\Repositories\ReviewRepository;
 use Letsdeploy\Reviews\Services\ApifyService;
 use Letsdeploy\Reviews\Services\ConfigService;
+use Statamic\Facades\GlobalSet;
 
 class ReviewsInit extends Command
 {
@@ -16,7 +17,7 @@ class ReviewsInit extends Command
 
     public function handle(
         ApifyService     $apifyService,
-        ConfigService $configService,
+        ConfigService    $configService,
         ReviewRepository $reviewRepository
     ): void
     {
@@ -27,6 +28,15 @@ class ReviewsInit extends Command
             placeIds: $configService->getGooglePlaceIds(),
         );
 
-        $reviews->each(fn (GoogleReviewDTO $review) => $reviewRepository->updateOrCreate($review));
+        if ($reviews->isEmpty()) {
+            $this->info('No reviews found.');
+            return;
+        }
+
+        $reviews->each(fn(GoogleReviewDTO $review) => $reviewRepository->updateOrCreate($review));
+
+        $reviewRepository->updateGlobal(
+            review: $reviews->first()
+        );
     }
 }

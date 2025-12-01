@@ -22,6 +22,8 @@ class GoogleReviewDTO implements Reviewable
         public string $reviewId,
         public string $reviewUrl,
         public Collection $reviewImageUrls,
+        public int $reviewsCount,
+        public int $totalScore,
         public string $rawJson
     )
     {
@@ -39,6 +41,8 @@ class GoogleReviewDTO implements Reviewable
             reviewId: $data['reviewId'],
             reviewUrl: $data['reviewUrl'],
             reviewImageUrls: collect($data['reviewImageUrls'])->map(fn(string $url) => ["review_image_url" => $url]),
+            reviewsCount: $data['reviewsCount'],
+            totalScore: $data['totalScore'],
             rawJson: json_encode($data)
         );
     }

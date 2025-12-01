@@ -32,7 +32,8 @@ class ApifyService
         $response = $this->client->post('compass~google-maps-reviews-scraper/run-sync-get-dataset-items', [
             'maxReviews' => $maxReviews,
             'placeIds' => $placeIds->toArray(),
-            "reviewsSort" => "newest"
+            "reviewsSort" => "newest",
+            "language" => "nl"
         ]);
 
         $response->throw();
