@@ -7,7 +7,7 @@ tabs:
           -
             handle: total_score
             field:
-              type: integer
+              type: float
               display: 'Total score'
           -
             handle: reviews_count

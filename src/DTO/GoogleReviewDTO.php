@@ -23,7 +23,7 @@ class GoogleReviewDTO implements Reviewable
         public string $reviewUrl,
         public Collection $reviewImageUrls,
         public int $reviewsCount,
-        public int $totalScore,
+        public float $totalScore,
         public string $rawJson
     )
     {
