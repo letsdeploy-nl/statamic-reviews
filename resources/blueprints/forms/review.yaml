@@ -1,0 +1,38 @@
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: name
+            field:
+              type: text
+              display: Naam
+          -
+            handle: content
+            field:
+              type: text
+              display: Content
+          -
+            handle: rating
+            field:
+              options:
+                -
+                  key: 1
+                  value: 'Zeer slecht'
+                -
+                  key: 2
+                  value: Slecht
+                -
+                  key: 3
+                  value: Gemiddeld
+                -
+                  key: 4
+                  value: Goed
+                -
+                  key: 5
+                  value: Uitstekend
+              default: '5'
+              type: select
+              display: Rating

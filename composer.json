@@ -23,8 +23,8 @@
     },
     "extra": {
         "statamic": {
-            "name": "Reviews",
-            "description": "Reviews addon"
+            "name": "Reviews for Statamic",
+            "description": "Integrate Google Reviews into your Statamic site with Apify."
         },
         "laravel": {
             "providers": [

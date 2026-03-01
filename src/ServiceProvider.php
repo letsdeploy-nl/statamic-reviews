@@ -2,15 +2,13 @@
 
 namespace Letsdeploy\Reviews;
 
-use Letsdeploy\Reviews\Commands\ReviewsInit;
-use Letsdeploy\Reviews\Commands\ReviewsUpdate;
+use Letsdeploy\Reviews\Commands\ReviewsSync;
 use Statamic\Providers\AddonServiceProvider;
 
 class ServiceProvider extends AddonServiceProvider
 {
     protected $commands = [
-        ReviewsInit::class,
-        ReviewsUpdate::class
+        ReviewsSync::class
     ];
 
     public function bootAddon(): void
@@ -34,5 +32,10 @@ class ServiceProvider extends AddonServiceProvider
             __DIR__.'/../content/globals/review.yaml' => base_path('content/globals/review.yaml'),
             __DIR__.'/../resources/blueprints/globals/review.yaml' => resource_path('blueprints/globals/review.yaml'),
         ], 'ldp-reviews-globals');
+
+        $this->publishes([
+            __DIR__.'/../resources/forms/review.yaml' => resource_path('forms/review.yaml'),
+            __DIR__.'/../resources/blueprints/forms/review.yaml' => resource_path('blueprints/forms/review.yaml'),
+        ], 'ldp-reviews-forms');
     }
 }

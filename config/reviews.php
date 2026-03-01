@@ -7,6 +7,6 @@ return [
 
     'google' => [
         'place_ids' => env('GOOGLE_PLACE_IDS'),
-        'max_reviews' => env('GOOGLE_MAX_REVIEWS', 20)
+        'max_reviews' => env('GOOGLE_MAX_REVIEWS', 1000)
     ]
 ];

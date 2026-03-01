@@ -7,33 +7,25 @@ use Letsdeploy\Reviews\DTO\GoogleReviewDTO;
 use Letsdeploy\Reviews\Repositories\ReviewRepository;
 use Letsdeploy\Reviews\Services\ApifyService;
 use Letsdeploy\Reviews\Services\ConfigService;
-use Statamic\Facades\GlobalSet;
 
-class ReviewsInit extends Command
+class ReviewsSync extends Command
 {
-    protected $signature = 'reviews:init';
+    protected $signature = 'reviews:sync';
 
-    protected $description = 'Fetches your Google reviews with Apify';
+    protected $description = 'Fetches your latest Google reviews with Apify';
 
     public function handle(
         ApifyService     $apifyService,
-        ConfigService    $configService,
+        ConfigService $configService,
         ReviewRepository $reviewRepository
     ): void
     {
-        $maxReviews = $this->ask('How many reviews do you have?', 10);
-
         $reviews = $apifyService->getGoogleReviews(
-            maxReviews: $maxReviews,
+            maxReviews: config('reviews.google.max_reviews'),
             placeIds: $configService->getGooglePlaceIds(),
         );
 
-        if ($reviews->isEmpty()) {
-            $this->info('No reviews found.');
-            return;
-        }
-
-        $reviews->each(fn(GoogleReviewDTO $review) => $reviewRepository->updateOrCreate($review));
+        $reviews->each(fn (GoogleReviewDTO $review) => $reviewRepository->updateOrCreate($review));
 
         $reviewRepository->updateGlobal(
             review: $reviews->first()
