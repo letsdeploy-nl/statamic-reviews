@@ -1,5 +1,5 @@
 {
-    "name": "letsdeploy/reviews",
+    "name": "letsdeploy/statamic-reviews",
     "autoload": {
         "psr-4": {
             "Letsdeploy\\Reviews\\": "src"
