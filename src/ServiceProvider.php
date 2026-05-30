@@ -13,6 +13,8 @@ class ServiceProvider extends AddonServiceProvider
 
     public function bootAddon(): void
     {
+        $this->mergeConfigFrom(__DIR__ . '/../config/reviews.php', 'reviews');
+
         $this->publishes([
             __DIR__ . '/../resources/views/components/_review.antlers.html' => resource_path('views/partials/components/_review.antlers.html'),
             __DIR__ . '/../resources/views/components/_review_masonry.antlers.html' => resource_path('views/partials/components/_review_masonry.antlers.html'),
