@@ -42,13 +42,17 @@ class ReviewRepository
             ->save();
     }
 
-    public function updateGlobal(Reviewable $review)
+    public function updateGlobal()
     {
+        $reviews = Entry::query()
+            ->where("collection", "reviews")
+            ->get();
+
         $set = GlobalSet::findByHandle("review");
         $variables = $set->inDefaultSite();
         $variables->data([
-            "total_score" => $review->totalScore,
-            "reviews_count" => $review->reviewsCount,
+            "total_score" => $reviews->isEmpty() ? 0 : round($reviews->avg("stars"), 1),
+            "reviews_count" => $reviews->count(),
         ]);
         $variables->save();
     }
