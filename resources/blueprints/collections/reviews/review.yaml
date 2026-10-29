@@ -28,17 +28,14 @@ tabs:
                 - 'between:1,5'
               visibility: read_only
           -
-            handle: review_image_urls
+            handle: review_images
             field:
-              type: grid
-              display: 'Review Image URLs'
+              type: assets
+              display: 'Review images'
+              container: reviews
+              mode: grid
+              allow_uploads: false
               visibility: read_only
-              fields:
-                -
-                  handle: review_image_url
-                  field:
-                    type: text
-                    display: 'Review Image URL'
       -
         display: Reviewer
         fields:
@@ -49,10 +46,14 @@ tabs:
               display: Name
               visibility: read_only
           -
-            handle: reviewer_photo_url
+            handle: reviewer_photo
             field:
-              type: text
-              display: 'Reviewer photo url'
+              type: assets
+              display: 'Reviewer photo'
+              container: reviews
+              max_files: 1
+              mode: list
+              allow_uploads: false
               visibility: read_only
       -
         display: Origin

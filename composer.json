@@ -20,6 +20,7 @@
         }
     },
     "require": {
+        "php": "^8.5",
         "statamic/cms": "^6.0"
     },
     "require-dev": {

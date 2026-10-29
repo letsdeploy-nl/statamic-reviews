@@ -26,7 +26,7 @@ interface Reviewable
         set;
     }
 
-    public string $reviewerPhotoUrl {
+    public ?string $reviewerPhotoUrl {
         get;
         set;
     }
