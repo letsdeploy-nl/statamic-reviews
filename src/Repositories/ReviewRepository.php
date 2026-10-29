@@ -19,6 +19,8 @@ class ReviewRepository
             $entry->set("title", $review->title);
             $entry->set("content", $review->content);
             $entry->set("stars", $review->stars);
+            $entry->set("reviewer_photo_url", $review->reviewerPhotoUrl);
+            $entry->set("review_image_urls", $review->reviewImageUrls->toArray());
             $entry->set("raw_json", $review->rawJson);
             $entry->save();
             return;
