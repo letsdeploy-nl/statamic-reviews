@@ -74,6 +74,7 @@ class ReviewRepository
     {
         $reviews = Entry::query()
             ->where("collection", "reviews")
+            ->whereNull("origin")
             ->get();
 
         $set = GlobalSet::findByHandle("review");
