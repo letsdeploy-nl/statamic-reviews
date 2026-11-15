@@ -15,8 +15,8 @@ return [
 
         'disk' => [
             'driver' => 'local',
-            'root' => public_path('reviews'),
-            'url' => '/reviews',
+            'root' => public_path('review-images'),
+            'url' => '/review-images',
             'visibility' => 'public',
             'throw' => false,
             'report' => false,

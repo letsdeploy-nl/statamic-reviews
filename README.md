@@ -25,7 +25,7 @@ php artisan vendor:publish --tag=ldp-reviews-globals
 php artisan vendor:publish --tag=ldp-reviews-assets
 ```
 
-The asset container uses a `reviews` filesystem disk. If your `config/filesystems.php` does not define one, the addon registers a local disk at `public/reviews` served from `/reviews`. Define your own `reviews` disk (e.g. S3) to override it.
+The asset container uses a `reviews` filesystem disk. If your `config/filesystems.php` does not define one, the addon registers a local disk at `public/review-images` served from `/review-images`. Define your own `reviews` disk (e.g. S3) to override it.
 
 Add to your `.env`:
 
