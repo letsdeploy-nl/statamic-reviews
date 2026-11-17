@@ -17,8 +17,10 @@ class ReviewRepository
 
     public function updateOrCreate(Reviewable $review): void
     {
-        $entry = Entry::whereCollection("reviews")
+        $entry = Entry::query()
+            ->where("collection", "reviews")
             ->where("review_id", $review->reviewId)
+            ->whereNull("origin")
             ->first();
 
         if ($entry) {
